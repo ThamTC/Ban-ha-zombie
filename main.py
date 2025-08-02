@@ -1,8 +1,12 @@
+
 import asyncio
 
 import pygame
 
 from random import randint
+
+from pygame import Surface
+
 from resource import load_image
 from sprites import Plasma, Snipper, Gun, Bullet, Explosion
 
@@ -18,12 +22,13 @@ background = load_image('background.png', 1.0)
 plasma_img = load_image('plasma.png', 0.03)
 snipper_img = load_image('snipper.svg')
 gun_img = load_image('gun.svg')
-bullet_img = load_image('bullet.svg', 0.07)
+bullet_img = load_image('bullet.svg', 0.12)
 explosion1 = load_image('explosion1.svg', 0.7)
 explosion2 = load_image('explosion2.svg', 0.6)
 explosion3 = load_image('explosion3.svg', 0.6)
 explosion4 = load_image('explosion4.svg', 0.6)
 flash_img = load_image('flash.svg', 1.5)
+
 plasmas = pygame.sprite.Group()
 snipers = pygame.sprite.Group()
 explosions = pygame.sprite.Group()
@@ -49,6 +54,7 @@ for i in (explosion1, explosion2, explosion4, flash_img):
 
 async def abc():
     await asyncio.sleep(0.05)
+
 
 async def main():
     running = True
@@ -76,6 +82,7 @@ async def main():
                 flash_task = explosions.sprites()[-1].animation_alpha(alpha=100, speed=6)
                 tasks.append(flash_task)
                 explosion_task = asyncio.gather(*tasks)
+                snipers.sprites()[-1].move_to(target_pos=pygame.mouse.get_pos())
         if explosion_task is not None and explosion_task.done():
             explosion_task = None
         smokes.draw(screen)
@@ -87,3 +94,5 @@ async def main():
 
 if __name__ == '__main__':
     asyncio.run(main())
+
+
