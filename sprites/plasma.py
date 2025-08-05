@@ -1,10 +1,11 @@
 from random import randint, choice
 
-import pygame.sprite
+import pygame
+from pygame.sprite import Sprite
 from pygame import Surface
 
 
-class Plasma(pygame.sprite.Sprite):
+class Plasma(Sprite):
     def __init__(self, plasma_image:Surface, pos=(0,0)):
         super().__init__()
         self.original_image = plasma_image
@@ -22,7 +23,7 @@ class Plasma(pygame.sprite.Sprite):
         self.image = pygame.transform.smoothscale(self.original_image, size=resize)
 
 
-    def update(self, pos=(0,0), mouse_pos=(0,0)):
+    def update(self):
         self.rect.x += self.vx
         self.rect.y -= self.vy
         self.alpha -= choice([1, 2])

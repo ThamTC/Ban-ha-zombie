@@ -13,8 +13,8 @@ class Gun(pygame.sprite.Sprite):
         self.current_pos = pos
         self.rect.center = pos
 
-    def update(self, pos=(0,0), mouse_pos=(0,0)):
-
+    def update(self):
+        mouse_pos = pygame.mouse.get_pos()
         # vector của mouse
         mouse_vt = Vector2(mouse_pos)
         # vector của gun
@@ -36,3 +36,4 @@ class Gun(pygame.sprite.Sprite):
             self.image = pygame.transform.flip(self.image, flip_y=True, flip_x=False)
         else:
             self.image = pygame.transform.flip(self.image, flip_y=False, flip_x=False)
+
