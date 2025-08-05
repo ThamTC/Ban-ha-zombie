@@ -63,7 +63,7 @@ async def main():
         screen.blit(background, (0, 0))
         mouse_x, mouse_y = pygame.mouse.get_pos()
         for ele in snipers:
-            ele.update(mouse_pos=(mouse_x, mouse_y))
+            ele.update()
         snipers.draw(screen)
         for plasma in plasmas:
             plasma.update()

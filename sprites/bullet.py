@@ -15,7 +15,7 @@ class Bullet(pygame.sprite.Sprite):
         self.target_pos = None
         self.speed = 20
 
-    def update(self, mouse_pos=(0,0)):
+    def update(self):
         if self.target_pos:
             dx = self.target_pos[0] - self.rect.centerx
             dy = self.target_pos[1] - self.rect.centery
@@ -26,7 +26,7 @@ class Bullet(pygame.sprite.Sprite):
                 self.rect.centery += step_y*self.speed
             else:
                 self.target_pos = None
-                self.rect.center = mouse_pos
+                self.rect.center = self.current_pos
 
 
     def move_to(self, target_pos=()):
